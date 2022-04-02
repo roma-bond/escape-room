@@ -1,4 +1,5 @@
 {
+  "name": "escape-room",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.0",
@@ -11,13 +12,19 @@
     "styled-components": "5.3.3"
   },
   "devDependencies": {
+    "@faker-js/faker": "^6.1.1",
+    "@jedmao/redux-mock-store": "^3.0.5",
+    "@types/faker": "^6.6.9",
+    "@types/jest": "^27.4.1",
     "@types/react": "^17.0.43",
     "@types/react-dom": "^17.0.14",
     "@types/react-redux": "^7.1.23",
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.24",
+    "axios-mock-adapter": "^1.20.0",
     "concurrently": "6.3.0",
     "eslint-config-htmlacademy": "^5.0.0",
+    "faker": "^6.6.6",
     "joi": "17.4.2",
     "json-server": "0.17.0",
     "redux-devtools-extension": "^2.13.9",
@@ -29,7 +36,8 @@
     "start:server": "node server/server",
     "start": "concurrently -k -p \"{name}\" -n \"CLIENT,SERVER\" -c \"green,blue\" \"npm:start:client\" \"npm:start:server\"",
     "build": "react-scripts build",
-    "eslint": "eslint --ext .tsx --ext .ts src/"
+    "eslint": "eslint --ext .tsx --ext .ts src/",
+    "test": "react-scripts test --passWithNoTests"
   },
   "eslintConfig": {
     "extends": [

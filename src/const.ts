@@ -9,6 +9,24 @@ export enum APIRoute {
   Orders = '/orders',
 }
 
+export const GENRE_LIST = [
+  'Все квесты',
+  'Приключения',
+  'Ужасы',
+  'Мистика',
+  'Детектив',
+  'Sci-fi',
+];
+
+export const GENRE_CODE_LIST = [
+  'all',
+  'adventures',
+  'horror',
+  'mystic',
+  'detective',
+  'sci-fi',
+];
+
 export const levelMap = new Map([
   ['hard', 'сложный'],
   ['medium', 'средний'],

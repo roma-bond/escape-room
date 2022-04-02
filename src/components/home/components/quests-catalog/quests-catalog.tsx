@@ -11,17 +11,8 @@ import { ReactComponent as IconScifi } from 'assets/img/icon-scifi.svg';
 import { ReactComponent as IconPerson } from 'assets/img/icon-person.svg';
 import { ReactComponent as IconPuzzle } from 'assets/img/icon-puzzle.svg';
 import * as S from './quests-catalog.styled';
-import { AppRoute, levelMap, genreMap } from '../../../../const';
+import { AppRoute, levelMap, genreMap, GENRE_LIST } from '../../../../const';
 import { State } from '../../../../types/store';
-
-const GENRE_LIST = [
-  'Все квесты',
-  'Приключения',
-  'Ужасы',
-  'Мистика',
-  'Детектив',
-  'Sci-fi',
-];
 
 const renderIcon = (genreCode: string | undefined) => {
   switch (genreCode) {

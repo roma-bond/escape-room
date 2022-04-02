@@ -1,14 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { MainLayout } from '../common/common';
 import { ReactComponent as IconClock } from 'assets/img/icon-clock.svg';
 import { ReactComponent as IconPerson } from 'assets/img/icon-person.svg';
 import { ReactComponent as IconPuzzle } from 'assets/img/icon-puzzle.svg';
 import * as S from './detailed-quest.styled';
 import { BookingModal } from './components/components';
-import { State } from '../../types/store';
+import { fetchQuestAction } from '../../store/api-actions';
 import { genreEnglishMap, levelMap } from '../../const';
+import { State } from '../../types/store';
 
 interface QuestParams {
   questId: string;
@@ -16,12 +17,21 @@ interface QuestParams {
 
 const DetailedQuest = (): JSX.Element => {
   const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
-  const params: QuestParams = useParams();
+  const { questId }: QuestParams = useParams();
+  const dispatch = useDispatch();
 
-  const quests = useSelector((state: State) => state.quests);
-  const quest = quests.find((quest) => quest.id === +params.questId);
+  useEffect(() => {
+    dispatch(fetchQuestAction(+questId));
+  }, []);
+
+  const state = useSelector((state: State) => state);
+  const { quest, isDataLoaded } = state;
 
   if (!quest) {
+    return <p>Hang on...</p>;
+  }
+
+  if (!quest && isDataLoaded) {
     return <Redirect to="/*" />;
   }
 

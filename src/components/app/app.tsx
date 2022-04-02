@@ -7,27 +7,8 @@ import NotFound from '../not-found/not-found';
 import { AppRoute } from '../../const';
 import { appTheme } from './common';
 import * as S from './app.styled';
-// import axios from 'axios';
 
 const App = (): JSX.Element => {
-  // const makeRequest2 = () => {
-  //   axios
-  //     .post('http://localhost:3001/orders', {
-  //       name: 'Roman',
-  //       peopleCount: 4,
-  //       phone: '91869526839',
-  //       isLegal: true,
-  //     })
-  //     .then((response) => {
-  //       console.log(response);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error.response);
-  //       console.log(JSON.parse(error.response.request.responseText));
-  //     });
-  // };
-
-  // makeRequest2();
   return (
     <ThemeProvider theme={appTheme}>
       <S.GlobalStyle />
