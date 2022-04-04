@@ -6,7 +6,6 @@ import { createAPI } from '../services/api';
 import { APIRoute } from '../const';
 import { State } from '../types/store';
 import { fetchQuestsAction, fetchQuestAction } from './api-actions';
-import { loadQuests, resetState } from './actions';
 import { makeFakeQuests } from '../mocks';
 
 const mockQuests = makeFakeQuests();

@@ -29,7 +29,7 @@ const TabItem = styled.li`
   &:not(:last-of-type) {
     padding-right: 40px;
     margin-right: 39px;
-    border-right: 1px solid ${({ theme }) => theme.color.gray};
+    border-right: 1px solid ${({ theme }) => theme.color?.gray};
   }
 
   @media (max-width: 1110px) {
@@ -46,12 +46,12 @@ const TabBtn = styled.button.attrs({ type: 'button' })<btnProps>`
   padding: 0;
 
   font-family: inherit;
-  font-size: ${({ theme }) => theme.font.semibase};
+  font-size: ${({ theme }) => theme.font?.semibase};
   line-height: 140%;
   letter-spacing: -0.02em;
   font-weight: 700;
 
-  color: ${({ theme }) => theme.color.whisper2};
+  color: ${({ theme }) => theme.color?.whisper2};
   background: transparent;
   border: none;
   cursor: pointer;
@@ -62,14 +62,14 @@ const TabBtn = styled.button.attrs({ type: 'button' })<btnProps>`
 
   &:focus span,
   &:hover span {
-    border-bottom: 2px solid ${({ theme }) => theme.color.tangerine};
+    border-bottom: 2px solid ${({ theme }) => theme.color?.tangerine};
   }
 
   ${(btnProps) =>
     btnProps.isActive &&
     css`
       span {
-        border-bottom: 2px solid ${({ theme }) => theme.color.tangerine};
+        border-bottom: 2px solid ${({ theme }) => theme.color?.tangerine};
       }
     `}
 `;
@@ -151,10 +151,10 @@ const QuestTitle = styled.h2`
   margin-bottom: 16px;
   padding: 0;
 
-  font-size: ${({ theme }) => theme.font.medium};
+  font-size: ${({ theme }) => theme.font?.medium};
   line-height: 120%;
   font-weight: 700;
-  color: ${({ theme }) => theme.color.white};
+  color: ${({ theme }) => theme.color?.white};
   word-break: break-word;
   overflow: hidden;
 `;
@@ -187,14 +187,14 @@ const QuestFeatureItem = styled.li`
   word-break: break-word;
   overflow: hidden;
 
-  font-size: ${({ theme }) => theme.font.small};
+  font-size: ${({ theme }) => theme.font?.small};
   line-height: 144%;
-  color: ${({ theme }) => theme.color.whisper2};
+  color: ${({ theme }) => theme.color?.whisper2};
 
   &:not(:last-of-type) {
     padding-right: 13px;
     margin-right: 12px;
-    border-right: 1px solid ${({ theme }) => theme.color.darkerGray};
+    border-right: 1px solid ${({ theme }) => theme.color?.darkerGray};
   }
 
   svg {

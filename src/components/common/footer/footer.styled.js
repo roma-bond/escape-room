@@ -53,7 +53,7 @@ const StyledVkIcon = styled(VkIcon)`
   }
 
   path {
-    fill: ${({ theme }) => theme.color.nero};
+    fill: ${({ theme }) => theme.color?.nero};
   }
 
   &:focus circle,

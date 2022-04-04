@@ -12,21 +12,21 @@ const Button = styled.button`
   padding-left: 48px;
 
   font-family: inherit;
-  font-size: ${({ theme }) => theme.font.upperbase};
+  font-size: ${({ theme }) => theme.font?.upperbase};
   line-height: 20px;
   letter-spacing: 0.03em;
   font-weight: 800;
   text-transform: uppercase;
 
-  color: ${({ theme }) => theme.color.white};
-  background-color: ${({ theme }) => theme.color.tangerine};
+  color: ${({ theme }) => theme.color?.white};
+  background-color: ${({ theme }) => theme.color?.tangerine};
   border: none;
   border-radius: 65px;
   cursor: pointer;
 
   &:focus,
   &:hover {
-    background-color: ${({ theme }) => theme.color.carrotOrange};
+    background-color: ${({ theme }) => theme.color?.carrotOrange};
   }
 
   &:active {

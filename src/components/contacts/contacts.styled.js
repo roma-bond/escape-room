@@ -11,7 +11,7 @@ const Main = styled.main`
   background-image: url(${contactsBg});
   background-repeat: no-repeat;
   background-position: top left;
-  background-color: ${({ theme }) => theme.color.nero};
+  background-color: ${({ theme }) => theme.color?.nero};
   background-size: cover;
 `;
 
@@ -47,19 +47,19 @@ const ContactsList = styled.dl`
 const ContactTitle = styled.dt`
   margin-bottom: 5px;
 
-  font-size: ${({ theme }) => theme.font.semibase};
+  font-size: ${({ theme }) => theme.font?.semibase};
   line-height: 140%;
   font-weight: 700;
   letter-spacing: -0.02em;
 
-  color: ${({ theme }) => theme.color.whisper2};
+  color: ${({ theme }) => theme.color?.whisper2};
 `;
 
 const ContactValue = styled.dd`
   margin: 0;
   padding: 0;
 
-  color: ${({ theme }) => theme.color.whisper2};
+  color: ${({ theme }) => theme.color?.whisper2};
 
   &:not(:last-of-type) {
     margin-bottom: 30px;

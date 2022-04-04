@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
 import { MainLayout, PageTitle, PageSubtext } from '../common/common';
 import contactsMap from 'assets/img/contacts-map.jpg';
 import * as S from './contacts.styled';
+import { YMaps, Map, Placemark } from 'react-yandex-maps';
+import { mapData, pointCoords } from '../../const';
 
 const Contacts = (): JSX.Element => {
   return (
@@ -49,13 +50,19 @@ const Contacts = (): JSX.Element => {
                 width="649"
                 height="336"
               />
-              <S.ContactsMapContainer>
-                <iframe
-                  src="https://yandex.ru/map-widget/v1/-/CCUBNOgS9A"
-                  width="649"
-                  height="336"
-                ></iframe>
-              </S.ContactsMapContainer>
+              <YMaps>
+                <Map defaultState={mapData} width="649px" height="336px">
+                  <Placemark
+                    geometry={pointCoords}
+                    options={{
+                      iconLayout: 'default#image',
+                      iconImageHref: 'img/map-marker.svg',
+                      iconImageSize: [48, 62],
+                      iconImageOffset: [-24, -31],
+                    }}
+                  />
+                </Map>
+              </YMaps>
             </S.ContactsMap>
           </S.Contacts>
         </S.ContentWrapper>

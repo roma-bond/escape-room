@@ -13,6 +13,7 @@ import { ReactComponent as IconPuzzle } from 'assets/img/icon-puzzle.svg';
 import * as S from './quests-catalog.styled';
 import { AppRoute, levelMap, genreMap, GENRE_LIST } from '../../../../const';
 import { State } from '../../../../types/store';
+import { Backdrop, CircularProgress } from '@mui/material';
 
 const renderIcon = (genreCode: string | undefined) => {
   switch (genreCode) {
@@ -32,7 +33,7 @@ const renderIcon = (genreCode: string | undefined) => {
 };
 
 const QuestsCatalog = (): JSX.Element => {
-  const quests = useSelector((state: State) => state.quests);
+  const { quests, isDataLoaded } = useSelector((state: State) => state);
 
   const [sortByGenre, setSortByGenre] = useState('all');
 
@@ -40,15 +41,22 @@ const QuestsCatalog = (): JSX.Element => {
   const history = useHistory();
 
   useEffect(() => {
+    history.push(`${AppRoute.Root}?genreFilter=${sortByGenre}`);
     dispatch(fetchQuestsAction(sortByGenre));
-  }, []);
+  }, [sortByGenre, history, dispatch]);
+
+  if (!isDataLoaded) {
+    return (
+      <Backdrop open>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    );
+  }
 
   const sortHandler = (genre: string) => {
     const genreCode = genreMap.get(genre);
     if (genreCode && genreCode !== sortByGenre) {
       setSortByGenre(genreCode);
-      history.push(`${AppRoute.Root}?genreFilter=${genreCode}`);
-      dispatch(fetchQuestsAction(genreCode));
     }
   };
 
@@ -61,6 +69,7 @@ const QuestsCatalog = (): JSX.Element => {
               <S.TabBtn
                 isActive={genreMap.get(genre) === sortByGenre ? true : false}
                 onClick={sortHandler.bind(this, genre)}
+                data-testid={`btn-${genre}`}
               >
                 {renderIcon(genreMap.get(genre))}
                 <S.TabTitle>{genre}</S.TabTitle>
@@ -79,7 +88,7 @@ const QuestsCatalog = (): JSX.Element => {
                   src={quest.previewImg}
                   width="344"
                   height="232"
-                  alt="квест Склеп"
+                  alt={`квест ${quest.title}`}
                 />
 
                 <S.QuestContent>

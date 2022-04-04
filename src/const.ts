@@ -1,3 +1,5 @@
+import { Genre } from './types/data';
+
 export enum AppRoute {
   Root = '/',
   Quest = '/quest',
@@ -42,7 +44,7 @@ export const genreMap = new Map([
   ['Sci-fi', 'sci-fi'],
 ]);
 
-export const genreEnglishMap = new Map([
+export const genreEnglishMap = new Map<Genre, string>([
   ['all', 'Все квесты'],
   ['adventures', 'Приключения'],
   ['horror', 'Ужасы'],
@@ -50,3 +52,12 @@ export const genreEnglishMap = new Map([
   ['detective', 'Детектив'],
   ['sci-fi', 'Sci-fi'],
 ]);
+
+export const mapData = {
+  center: [59.968137, 30.316272],
+  zoom: 17,
+  width: 649,
+  height: 336,
+};
+
+export const pointCoords = [59.96842, 30.3174];

@@ -10,8 +10,21 @@ export type Quest = {
   duration: Duration;
 };
 
+export interface OrderPost {
+  name: string;
+  phone: string;
+  peopleCount: number;
+  isLegal: boolean;
+}
+
 type Level = 'hard' | 'medium' | 'easy';
 
-type Genre = 'horror' | 'mystic' | 'detective' | 'adventures' | 'sci-fi';
+export type Genre =
+  | 'all'
+  | 'horror'
+  | 'mystic'
+  | 'detective'
+  | 'adventures'
+  | 'sci-fi';
 
 type Duration = 60 | 90 | 120;

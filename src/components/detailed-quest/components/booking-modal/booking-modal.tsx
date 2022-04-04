@@ -4,17 +4,11 @@ import axios from 'axios';
 import { AppRoute } from '../../../../const';
 import * as S from './booking-modal.styled';
 import { ReactComponent as IconClose } from 'assets/img/icon-close.svg';
+import { OrderPost } from '../../../../types/data';
 
 interface BookingModalProps {
   peopleCount: number[];
   onModalClose: () => void;
-}
-
-interface OrderPost {
-  name: string;
-  phone: string;
-  peopleCount: number;
-  isLegal: boolean;
 }
 
 const BookingModal = ({
@@ -31,16 +25,16 @@ const BookingModal = ({
   const formSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const makeRequest = () => {
+    const order: OrderPost = {
+      name: nameRef.current ? nameRef.current.value : '',
+      peopleCount: peopleRef.current ? +peopleRef.current.value : 0,
+      phone: phoneRef.current ? phoneRef.current.value : '1234567890',
+      isLegal: isValidRef.current ? isValidRef.current.value === 'on' : false,
+    };
+
+    const sendOrder = () => {
       axios
-        .post('http://localhost:3001/orders', {
-          name: nameRef.current ? nameRef.current.value : '',
-          peopleCount: peopleRef.current ? +peopleRef.current.value : 0,
-          phone: phoneRef.current ? phoneRef.current.value : '1234567890',
-          isLegal: isValidRef.current
-            ? isValidRef.current.value === 'on'
-            : false,
-        })
+        .post('http://localhost:3001/orders', order)
         .then((response) => {
           if (response.statusText === 'Created') {
             alert('Your order created');
@@ -52,13 +46,13 @@ const BookingModal = ({
         });
     };
 
-    makeRequest();
+    sendOrder();
   };
 
   return (
     <S.BlockLayer>
       <S.Modal>
-        <S.ModalCloseBtn onClick={onModalClose}>
+        <S.ModalCloseBtn data-testid="close" onClick={onModalClose}>
           <IconClose width="16" height="16" />
           <S.ModalCloseLabel>Закрыть окно</S.ModalCloseLabel>
         </S.ModalCloseBtn>
@@ -72,6 +66,7 @@ const BookingModal = ({
               id="booking-name"
               name="booking-name"
               placeholder="Имя"
+              data-testid="name"
               required
             />
           </S.BookingField>
@@ -86,6 +81,7 @@ const BookingModal = ({
               name="booking-phone"
               placeholder="Телефон"
               pattern="[0-9]{10}"
+              data-testid="phone"
               required
             />
           </S.BookingField>
@@ -101,6 +97,7 @@ const BookingModal = ({
               placeholder="Количество участников"
               min={minPeopleCount}
               max={maxPeopleCount}
+              data-testid="people"
               required
             />
           </S.BookingField>
@@ -111,6 +108,7 @@ const BookingModal = ({
               type="checkbox"
               id="booking-legal"
               name="booking-legal"
+              data-testid="isValid"
               required
             />
             <S.BookingCheckboxLabel

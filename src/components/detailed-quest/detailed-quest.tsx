@@ -10,6 +10,7 @@ import { BookingModal } from './components/components';
 import { fetchQuestAction } from '../../store/api-actions';
 import { genreEnglishMap, levelMap } from '../../const';
 import { State } from '../../types/store';
+import { Backdrop, CircularProgress } from '@mui/material';
 
 interface QuestParams {
   questId: string;
@@ -22,20 +23,24 @@ const DetailedQuest = (): JSX.Element => {
 
   useEffect(() => {
     dispatch(fetchQuestAction(+questId));
-  }, []);
+  }, [dispatch, questId]);
 
   const state = useSelector((state: State) => state);
   const { quest, isDataLoaded } = state;
 
-  if (!quest) {
-    return <p>Hang on...</p>;
+  if (!isDataLoaded || !quest) {
+    return (
+      <Backdrop open>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    );
   }
 
   if (!quest && isDataLoaded) {
     return <Redirect to="/*" />;
   }
 
-  const onBookingBtnClick = () => {
+  const clickBookingHandler = () => {
     setIsBookingModalOpened(true);
   };
 
@@ -78,7 +83,7 @@ const DetailedQuest = (): JSX.Element => {
 
             <S.QuestDescription>{quest.description}</S.QuestDescription>
 
-            <S.QuestBookingBtn onClick={onBookingBtnClick}>
+            <S.QuestBookingBtn onClick={clickBookingHandler}>
               Забронировать
             </S.QuestBookingBtn>
           </S.PageDescription>

@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import store, { api } from './store';
 import { loadQuests, loadQuest, resetState } from './actions';
 import { APIRoute } from '../const';
 import { Quest } from '../types/data';
